@@ -1,0 +1,207 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114843719-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114843719-1');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+</head>
+
+<body>
+  <style>
+    html {
+      font-size: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc80GoBruhwF3Aop5GruLuWNNPVz8zR9rRe84ZphudyqgfQF_X);
+      background-repeat: repeat;
+      background-size: 100px 50px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .u-margin-bottom-medium {
+      margin-bottom: 2rem !important;
+    }
+
+    .big {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border: 3px solid white;
+      margin: 0 auto;
+      background-color: lightgrey;
+    }
+
+    td {
+      border: 1px solid white;
+      padding: .4rem;
+    }
+
+    th {
+      font-size: 20px;
+    }
+
+    #buttons input {
+      padding: .5rem;
+      margin: 0 1rem;
+      margin-left: 20%;
+    }
+
+    #outputText {
+      color: red;
+      margin-bottom: 1rem;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50px;
+      width: 400px;
+      margin: 0 auto;
+    } 
+
+    #outputText::first-line {
+      color: whitesmoke;
+      font-size: 1.2rem;
+    }
+
+    .output-box {
+      margin-top: 1rem;
+      display: block;
+      width: auto;
+      height: auto;
+      color: white;
+      background-color: white;
+      border: solid 3px yellow;
+      padding: 2rem;
+    }
+
+    .post {
+        border: solid white 3px;
+        background-color: black;
+        width: 80%;
+        height: auto;
+        color: white;
+        margin: 0 auto;
+        padding: 20px;
+        margin-bottom: 10px;
+    }
+
+    .output-box p {
+      padding-left: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .button {
+      background-color: white;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    img {
+      margin: 0 auto;
+      height: 6vh;
+      display: block;
+      /* border: white 3px solid; */
+      /* border-radius: 50%; */
+    } 
+    .margin-top {
+      margin-top: 5rem !important;
+    }
+
+    .white {
+      color: white;
+      background-color: black;
+      width: 200px;
+      margin: 0 auto;
+      margin-bottom: 3rem;
+    }
+    button {
+
+    }
+    @media print {
+      .output-box {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        border: none;
+        top: 0;
+        left: 0;
+        margin: 0;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        color: white;
+      }
+      .no-print,
+      .no-print * {
+        display: none !important;
+      }
+    }
+    input[type=submit] {
+    color: white;
+    padding:5px 15px; 
+    background: black; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+  </style>
+  <body>
+    <div class="centered big margin-top white">My Blog</div>
+    <img class="u-margin-bottom-medium" src="https://res.cloudinary.com/whitehatwebdev/image/upload/v1518909183/WhiteHatWebDev/small-hat.png" alt="">
+    <div id="outputText"></div>
+    <form id="mainForm"  action="blog.aspx" method="post" >
+    <table id="tableMain">
+      <tr>
+        <th>New Post</th>
+      </tr>
+      <tr>
+        <td colspan="2">
+          *Email: <br> <input type="text" name="email" id=""> <br>
+           *Post Title: <br> <input type="text" name="title" id=""> <br>
+          *Body: <br>
+          <textarea name="blogBody" id="" cols="50" rows="8"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <input type="submit" value="Submit">
+        </td>
+      </tr>
+     
+    </table>
+    <div class="centered">
+      <a href="index.html">Back</a>
+    </div>
+    <div id="outputText2"></div>
+  </body>
+</html>
