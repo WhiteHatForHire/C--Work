@@ -7,13 +7,15 @@
     DateTime localDate = DateTime.Now;
     Guid guid = Guid.NewGuid();
     string guidStr = guid.ToString();
-
+    string ip = (HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
     
-
+    
+    
+    
     bool errFlag = true;
     string errMsg = "";
     string confirmMsg = "";
-
+    
     // Email logic
     if (email == "")
     {
@@ -51,6 +53,7 @@
         file.WriteLine("<p>" + blogBody + "</p>");
         file.WriteLine("<p><small>" + "Posted by: " + email + "</small><br>");
         file.WriteLine("<small>" + localDate + "</small></p>");
+        file.WriteLine("<small>" + "Posted from: " + ip + "</small></p>");
 
         file.WriteLine("</div>");
         Response.Redirect("http://157.160.104.106/ms7700/blog.html");
