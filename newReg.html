@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114843719-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-114843719-1');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Order Form</title>
+</head>
+
+<body>
+  <style>
+    html {
+      font-size: 16px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .u-margin-bottom-medium {
+      margin-bottom: 2rem !important;
+    }
+
+    .big {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border: 3px solid black;
+      margin: 0 auto;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: .4rem;
+    }
+
+    th {
+      font-size: 20px;
+    }
+
+    #buttons input {
+      padding: .5rem;
+      margin: 0 1rem;
+      margin-left: 20%;
+    }
+
+    #outputText {
+      color: red;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    #outputText::first-line {
+      color: black;
+      font-size: 1.2rem;
+    }
+
+    .output-box {
+      margin-top: 1rem;
+      display: block;
+      width: auto;
+      height: auto;
+      color: white;
+      background-color: black;
+      border: solid 3px gray;
+      padding: 2rem;
+    }
+
+    .output-box p {
+      padding-left: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .button {
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    @media print {
+      .output-box {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        border: none;
+        top: 0;
+        left: 0;
+        margin: 0;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        color: black;
+      }
+      .no-print,
+      .no-print * {
+        display: none !important;
+      }
+    }
+  </style>
+  <body>
+    <div class="centered big">White Hat Web Dev</div>
+    <div id="outputText"></div>
+    <form id="mainForm"  action="newReg.aspx" method="post" >
+    <table id="tableMain">
+      <tr>
+        <th>Register Form</th>
+      </tr>
+      <tr>
+        <td colspan="2">*First Name:
+          <input type="text" name="First Name" id="first_name"> *Last Name:
+          <input type="text" name="Last Name" id="last_name"> *Email Address:
+          <input type="text" name="Email Address" id="email_address">
+        </td>
+      </tr>
+      <tr>
+        <td>*Billing Address</td>
+        <td>*Business Address</td>
+      </tr>
+      <tr>
+        <td>
+          <textarea name="Billing Address" id="billing_address" cols="30" rows="10"></textarea>
+        </td>
+        <td>
+          <textarea name="Business Address" id="business_address" cols="30" rows="10"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>*Site Name:</td>
+        <td>
+          <input type="text" name="Site Name" id="site_name">
+        </td>
+      </tr>
+      <tr>
+        <td id="buttons" colspan="2">
+          <!-- <input type="submit" value="Submit" id="submit"> -->
+          <input type="button" value="Submit" onclick="validateMyForm();" id="btn_submit">
+          <input type="reset" value="Reset" id="reset">
+        </td>
+      </tr>
+    </table>
+    </form>
+    <div class="centered">
+      <a href="index.html">Back</a>
+    </div>
+    </div>
+    <div id="outputText2"></div>
+    <script>
+      // Strings
+      var jawn;
+      // Main Form
+      const mainForm = document.getElementById('mainForm');
+      // Main Buttons
+      const submitBtn = document.getElementById('btn_submit');
+      const submitBtn2 = document.getElementById('submit2');
+      const totalBtn = document.getElementById('total');
+      const resetBtn = document.getElementById('reset');
+      // Output
+      const outputTxt = document.getElementById('outputText');
+      const outputTxt2 = document.getElementById('outputText2');
+      // Text inputs
+      const firstName = document.getElementById('first_name');
+      const lastName = document.getElementById('last_name');
+      const email = document.getElementById('email_address');
+      const billingAddress = document.getElementById('billing_address');
+      const businessAddress = document.getElementById('business_address');
+      const siteName = document.getElementById('site_name');
+      // Array for all text elements
+      const textElements = [firstName, lastName, email, billingAddress, businessAddress, siteName];
+      // Date info
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      today = mm + '/' + dd + '/' + yyyy;
+
+      // Reset Button
+      resetBtn.addEventListener('click', function () {
+        reset();
+      });
+      // FORM
+      function validateMyForm()
+        {
+          var numberErrors = 0;
+          console.log(textElements);
+          textElements.forEach(element => {
+            if (element.value == "") {
+              numberErrors++;
+              console.log('blank');
+              }
+            });
+            if (numberErrors > 0) {
+            alert(`Please fix ${numberErrors} error(s) and resubmit.`);
+              console.log('here');
+              return false;
+            } else {
+              return true;
+            }
+          
+          }
+        //   if(firstName.value == "");
+        //   { 
+        //     alert("validation failed false");
+        //     // returnToPreviousPage();
+        //     return false;
+        //   }
+
+        //   alert("validations passed");
+        //   return true;
+        // }
+      
+      // SUBMIT FORM
+      submitBtn.addEventListener('click', function () {
+        var alertString = "Please enter a value for \n";
+        textElements.forEach(element => {
+          if (element.value == "") {
+            alertString += element.name + "\n";
+          }
+        });
+        if (alertString == "Please enter a value for \n") {
+          
+          console.log(mainForm);
+          outputTxt.innerHTML = `
+          <p style="color:green">Your submission has been recieved</p>
+          `
+          outputTxt2.innerHTML = `
+          <div class="output-box" id="jawn">
+            <p class="big u-margin-bottom-medium">White Hat Web Dev</p>
+            <p>Registration for ${firstName.value} ${lastName.value}</p>
+            <p>Site Date of Registration: ${today}</p>
+            <p>Billing Address: ${billingAddress.value}</p>
+            <p>Business Address: ${businessAddress.value}</p>
+            <p>Site Name: ${siteName.value}</p>
+            <button class="button" onclick="mainForm.submit();">Continue</button>
+            <button class="button no-print" onclick="window.print();">Print</button>
+          </div>
+          `
+          jawn = document.getElementById('jawn');
+          jawn.classList.remove('hidden');
+        } else {
+          // console.log(rad1.value);
+          outputTxt.innerText = `${alertString}`;
+        }
+      });
+      function reset() {
+        jawn.classList.add('hidden');
+        textElements.forEach(element => {
+          element.value = "";
+        });
+        outputTxt.innerText = "";
+        document.getElementById("jawn").innerHTML = "";
+        output.value = 0;
+      }
+    </script>
+  </body>
+</html>

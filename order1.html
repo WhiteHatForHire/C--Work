@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114843719-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-114843719-1');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Order Form</title>
+</head>
+
+<body>
+  <style>
+    html {
+      font-size: 16px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .u-margin-bottom-medium {
+      margin-bottom: 2rem !important;
+    }
+
+    .big {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border: 3px solid black;
+      margin: 0 auto;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: .4rem;
+    }
+
+    th {
+      font-size: 20px;
+    }
+
+    #buttons input {
+      padding: .5rem;
+      margin: 0 1rem;
+      margin-left: 20%;
+    }
+
+    #outputText {
+      color: red;
+      margin-bottom: 1rem;
+    }
+
+    #outputText::first-line {
+      color: black;
+      font-size: 1.2rem;
+    }
+
+    .output-box {
+      margin-top: 1rem;
+      display: block;
+      width: auto;
+      height: auto;
+      color: white;
+      background-color: black;
+      border: solid 3px greenyellow;
+      padding: 2rem;
+    }
+
+    .output-box p {
+      padding-left: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .button {
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    @media print {
+      .output-box {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        border: none;
+        top: 0;
+        left: 0;
+        margin: 0;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        color: black;
+      }
+      .no-print,
+      .no-print * {
+        display: none !important;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="centered big">White Hat Web Dev</div>
+    <div id="outputText"></div>
+    <table id="tableMain">
+      <tr>
+        <th>Order Form</th>
+      </tr>
+      <tr>
+        <td colspan="2">*First Name:
+          <input type="text" name="First Name" id="first_name"> *Last Name:
+          <input type="text" name="Last Name" id="last_name"> *Email Address:
+          <input type="text" name="Email Address" id="email_address">
+        </td>
+      </tr>
+      <tr>
+        <td>*Billing Address</td>
+        <td>*Business Address</td>
+      </tr>
+      <tr>
+        <td>
+          <textarea name="Billing Address" id="billing_address" cols="30" rows="10"></textarea>
+        </td>
+        <td>
+          <textarea name="Business Address" id="business_address" cols="30" rows="10"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>*Site Name:</td>
+        <td>
+          <input type="text" name="Site Name" id="site_name">
+        </td>
+      </tr>
+      <tr>
+        <td>*Product:</td>
+        <td>
+          <select name="products" id="products">
+            <option value="portfolio">Basic Portfolio ($400)</option>
+            <option value="blog">Blog ($700)</option>
+            <option value="smBusiness">Small Business ($1500)</option>
+            <option value="ecommerce">E-Commerce ($3000)</option>
+            <option value="social_media">Social Media ($4500)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>*Number of Pages: ($100 a page)</td>
+        <td>
+          <div>
+            <input type="radio" name="1" id="1">
+            <label for="1">1</label>
+            <input type="radio" name="1" id="2">
+            <label for="2">2</label>
+            <input type="radio" name="1" id="3">
+            <label for="3">3</label>
+            <input type="radio" name="1" id="4">
+            <label for="4">4</label>
+            <input type="radio" name="1" id="5">
+            <label for="5">5+</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Service Add-ons:</td>
+        <td>
+          <input type="checkbox" name="service" id="rushed">
+          <label for="rushed">Rushed Service ($200)</label>
+          <input type="checkbox" name="service" id="logo">
+          <label for="logo">Custom Logo ($400)</label>
+          <input type="checkbox" name="service" id="hosting">
+          <label for="hosting">Hosting ($100)</label>
+        </td>
+      </tr>
+      <tr>
+        <td>QTY Add-ons ||| Widgets: ($75 each)</td>
+        <td>#
+          <input class="qty" type="text" size="3" name="widgets" id="widgets" data-cost="75"> Cost: $
+          <input type="text" size="3" name="widget_out" id="widget_out">
+        </td>
+      </tr>
+      <tr>
+        <td>API Implementations: ($50 each) </td>
+        <td>#
+          <input class="qty" type="text" size="3" name="api" id="api" data-cost="50"> Cost: $
+          <input type="text" size="3" name="api_out" id="api_out">
+        </td>
+      </tr>
+      <tr>
+        <td>Number of Designs: ($100 each)</td>
+        <td>#
+          <input class="qty" type="text" size="3" name="logo" id="logo" data-cost="100"> Cost: $
+          <input type="text" size="3" name="logo_out" id="logo_out">
+        </td>
+      </tr>
+      <tr>
+        <td>Add-on Sub-Total:</td>
+        <td>$
+          <input type="text" name="sub-total" id="sub-total">
+        </td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td>$
+          <input type="text" name="total" id="total">
+        </td>
+      </tr>
+      <tr>
+        <td id="buttons" colspan="2">
+          <input type="submit" value="Submit" id="submit">
+          <input type="reset" value="Reset" id="reset">
+        </td>
+      </tr>
+    </table>
+    <div class="centered">
+      <a href="index.html">Back</a>
+    </div>
+    </div>
+    <div id="outputText2"></div>
+    <script>
+      // Strings
+      var jawn;
+      var radNotSelected = "Please select a number of pages";
+      var total = 0;
+      //QTY Add-ons
+      const qty = document.getElementsByClassName('qty');
+      var qtyTotal = 0;
+      // Radio 
+      const rad1 = document.getElementsByName('1');
+      // Checkbox
+      const check1 = document.getElementsByName('service');
+      // Options
+      const productOptions = document.getElementById("products").childNodes;
+      // Main Buttons
+      const submitBtn = document.getElementById('submit');
+      const totalBtn = document.getElementById('total');
+      const resetBtn = document.getElementById('reset');
+      // Total field
+      const output = document.getElementById('total');
+      const sub_output = document.getElementById('sub-total');
+      const outputTxt = document.getElementById('outputText');
+      const outputTxt2 = document.getElementById('outputText2');
+      // Text inputs
+      const firstName = document.getElementById('first_name');
+      const lastName = document.getElementById('last_name');
+      const email = document.getElementById('email_address');
+      const billingAddress = document.getElementById('billing_address');
+      const businessAddress = document.getElementById('business_address');
+      const siteName = document.getElementById('site_name');
+      // Array for all text elements
+      const textElements = [firstName, lastName, email, billingAddress, businessAddress, siteName];
+      // Date info
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      today = mm + '/' + dd + '/' + yyyy;
+      // Reset Button
+      resetBtn.addEventListener('click', function () {
+        reset();
+      });
+      // Submit Button
+      submitBtn.addEventListener('click', function () {
+        if (total !== 0) {
+          alert('Already submitted');
+          return 0;
+        }
+        total = 0;
+        output.value = "";
+        var alertString = "Please enter a value for \n";
+        textElements.forEach(element => {
+          if (element.value == "") {
+            alertString += element.name + "\n";
+          }
+        });
+        rad1.forEach(rad => {
+          if (rad.checked) {
+            radNotSelected = "";
+          }
+        });
+        for (var i = 0; i < qty.length; i++) {
+          let local_cost = qty[i].dataset.cost;
+          let qty_num = qty[i].value;
+          let next_sib = qty[i].nextElementSibling;
+          if (qty_num === '') {
+            qty_num = 0;
+          }
+          next_sib.value = qty_num * local_cost;
+          qtyTotal += parseInt(qty_num) * parseInt(local_cost);
+        }
+        if (alertString + radNotSelected == "Please enter a value for \n") {
+          console.log("nextpart");
+          outputTxt.innerText = "";
+          // START SUBTOTALS
+          rad1.forEach(rad => {
+            if (rad.checked) {
+              total += (parseInt(rad.id) * 100);
+            }
+          });
+          productOptions.forEach(option => {
+            if (option.selected == true) {
+              console.log(option);
+              if (option.value == 'portfolio') {
+                total += 400;
+              } else if (option.value == 'blog') {
+                total += 700;
+              } else if (option.value == 'smBusiness') {
+                total += 1500;
+              } else if (option.value == 'ecommerce') {
+                total += 3000;
+              } else if (option.value == 'social_media') {
+                total += 4500;
+              }
+            }
+          });
+          check1.forEach(service => {
+            if (service.checked) {
+              if (service.id == 'rushed') {
+                total += 250;
+              } else if (service.id == 'logo') {
+                total += 400;
+              } else if (service.id == 'hosting') {
+                total += 100;
+              }
+            }
+          });
+          // console.log(qty.total);
+          // console.log(total);
+
+          sub_output.value = parseInt(qtyTotal);
+          output.value = parseInt(total) + parseInt(qtyTotal);
+          
+          outputTxt.innerHTML = ` 
+          <p style="color:green">Your submission has been recieved</p>
+          `
+          outputTxt2.innerHTML = `
+          <div class="output-box" id="jawn">
+            <p class="big u-margin-bottom-medium">White Hat Web Dev</p>
+            <p>Reciept for ${firstName.value} ${lastName.value}</p>
+            <p>Site Date of order: ${today}</p>
+            <p>Total: $${output.value}</p>
+            <p>Billing Address: ${billingAddress.value}</p>
+            <p>Business Address: ${businessAddress.value}</p>
+            <p>Site Name: ${siteName.value}</p>
+            <button class="button no-print" onclick="window.print();">Print</button>
+          </div>
+          `
+          jawn = document.getElementById('jawn');
+          jawn.classList.remove('hidden');
+        } else {
+          // console.log(rad1.value);
+          outputTxt.innerText = `${alertString + radNotSelected}`;
+        }
+
+        
+      });
+      function reset() {
+
+        jawn.classList.add('hidden');
+        total = 0;
+        rad1.forEach(rad => {
+          rad.checked = false;
+        });
+        textElements.forEach(element => {
+          element.value = "";
+        });
+        check1.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        outputTxt.innerText = "";
+        sub_output.value = '';
+        output.value = '';
+
+        document.getElementById("jawn").innerHTML = "";
+        for (var i = 0; i < qty.length; i++) {
+          qty[i].value = '';
+          qty[i].nextElementSibling.value = '';
+        }
+        qtyTotal = '';
+      }
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114843719-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-114843719-1');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pizza Shop</title>
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+</head>
+
+<body>
+  <style>
+    html {
+      font-size: 16px;
+      font-family: 'Fugaz One', cursive;
+    }
+
+    body {
+      background-image: url(https://media.istockphoto.com/vectors/pizza-wallpaper-vector-id543352344);
+      background-repeat: repeat;
+      background-size: 60px 60px;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .u-margin-bottom-medium {
+      margin-bottom: 2rem !important;
+    }
+
+    .big {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    table {
+      border: 3px solid black;
+      margin: 0 auto;
+      background-color: lightgrey;
+    }
+
+    td {
+      border: 1px solid black;
+      padding: .4rem;
+    }
+
+    th {
+      font-size: 20px;
+    }
+
+    #buttons input {
+      padding: .5rem;
+      margin: 0 1rem;
+      margin-left: 20%;
+    }
+
+    #outputText {
+      color: red;
+      margin-bottom: 1rem;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50px;
+      width: 400px;
+      margin: 0 auto;
+    } 
+
+    #outputText::first-line {
+      color: whitesmoke;
+      font-size: 1.2rem;
+    }
+
+    .output-box {
+      margin-top: 1rem;
+      display: block;
+      width: auto;
+      height: auto;
+      color: white;
+      background-color: black;
+      border: solid 3px yellow;
+      padding: 2rem;
+    }
+
+    .output-box p {
+      padding-left: 1rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .button {
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    img {
+      margin: 0 auto;
+      height: 20vh;
+      display: block;
+      border: black 3px solid;
+      border-radius: 50%;
+    } 
+
+    @media print {
+      .output-box {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        border: none;
+        top: 0;
+        left: 0;
+        margin: 0;
+        text-align: center;
+        padding: 15px;
+        font-size: 16px;
+        line-height: 18px;
+        color: black;
+      }
+      .no-print,
+      .no-print * {
+        display: none !important;
+      }
+    }
+  </style>
+  <body>
+    <div class="centered big">Little Tommy's Pizzeria</div>
+    <img class="u-margin-bottom-medium" src="http://brooklynpizzaconc.com/wp-content/uploads/2014/09/sicilianPie.jpg" alt="">
+    <div id="outputText"></div>
+    <table id="tableMain">
+      <tr>
+        <th>Order Form</th>
+      </tr>
+      <tr>
+        <td colspan="2">*First Name:
+          <input type="text" name="First Name" id="first_name"> *Last Name:
+          <input type="text" name="Last Name" id="last_name"> *Phone Number:
+          <input type="text" name="Phone Number" id="phone_number">
+        </td>
+      </tr>
+      <tr>
+        <td>*Pizza Size:</td>
+        <td>
+          <select name="products" id="products">
+            <option value="small">Small ($5.00)</option>
+            <option value="medium">Medium ($7.50)</option>
+            <option value="large">Large ($10.00)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Toppings ($1 each):</td>
+        <td>
+          <input type="checkbox" name="service" id="peppers">
+          <label for="peppers">Peppers</label>
+          <input type="checkbox" name="service" id="x-cheese">
+          <label for="x-cheese">Extra Cheese</label>
+          <input type="checkbox" name="service" id="olives">
+          <label for="olives">Olives</label>
+          <input type="checkbox" name="service" id="onions">
+          <label for="onions">Onions</label>
+          <input type="checkbox" name="service" id="white">
+          <label for="white">White Pizza</label>
+        </td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td>$
+          <input type="text" name="total" id="total">
+        </td>
+      </tr>
+      <tr>
+        <td id="buttons" colspan="2">
+          <input type="submit" value="Submit" id="submit">
+          <input type="reset" value="Reset" id="reset">
+        </td>
+      </tr>
+    </table>
+    <div class="centered">
+      <a href="index.html">Back</a>
+    </div>
+    </div>
+    <div id="outputText2"></div>
+    <script>
+      // Strings
+      var jawn;
+      var total = 0;
+
+      // Checkbox
+      const check1 = document.getElementsByName('service');
+
+      // Options
+      const productOptions = document.getElementById("products").childNodes;
+      // Main Buttons
+      const submitBtn = document.getElementById('submit');
+      const totalBtn = document.getElementById('total');
+      const resetBtn = document.getElementById('reset');
+
+      // Total field
+      const output = document.getElementById('total');
+      const outputTxt = document.getElementById('outputText');
+      const outputTxt2 = document.getElementById('outputText2');
+
+      // Text inputs
+      const firstName = document.getElementById('first_name');
+      const lastName = document.getElementById('last_name');
+      const phone = document.getElementById('phone_number');
+
+      // Array for all text elements
+      const textElements = [firstName, lastName, phone];
+
+      // Text output continued
+      var pizzaSize = '';
+      var toppingArray = [];
+
+      // Date info
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      today = mm + '/' + dd + '/' + yyyy;
+
+      // Reset Button
+      resetBtn.addEventListener('click', function () {
+        reset();
+      });
+
+      submitBtn.addEventListener('click', function () {
+        toppingArray = [];
+        pizzaSize = '';
+        total = 0;
+        output.value = "";
+        var alertString = "Please enter a value for \n";
+        textElements.forEach(element => {
+          if (element.value == "") {
+            alertString += element.name + "\n";
+          }
+        });
+       
+        if (alertString == "Please enter a value for \n") {
+          console.log("nextpart");
+          outputTxt.innerText = "";
+
+          // START SUBTOTALS
+          productOptions.forEach(option => {
+            if (option.selected == true) {
+              console.log(option);
+              if (option.value == 'small') {
+                total += 5;
+                pizzaSize = 'Small';
+              } else if (option.value == 'medium') {
+                total += 7.50;
+                pizzaSize = 'Medium';
+              } else if (option.value == 'large') {
+                total += 10.00;
+                pizzaSize = 'Large';
+              } 
+            }
+          });
+
+          check1.forEach(service => {
+            if (service.checked) {
+             total += 1;
+             toppingArray += service.id;
+             toppingArray += '<br>';
+            }
+          });
+
+          output.value = total;
+          outputTxt.innerHTML = `
+          <p style="color:green">Your submission has been recieved</p>
+          `
+          outputTxt2.innerHTML = `
+          <div class="output-box big" id="jawn">
+            <p>Thank you ${firstName.value} for your order</p>
+            <p>Your order is a ${pizzaSize} pizza</p>
+            <p>${toppingArray}</p>
+            <p>Cost is: $${total}</p>
+            <button class="button no-print" onclick="window.print();">Print</button>
+          </div>
+          `
+
+          jawn = document.getElementById('jawn');
+          jawn.classList.remove('hidden');
+        } else {
+          outputTxt.innerText = `${alertString}`;
+        }
+      });
+
+
+      function reset() {
+        if (total != 0) {
+          jawn.classList.add('hidden');
+          total = 0;
+          document.getElementById("jawn").innerHTML = "";
+          toppingArray = [];
+          pizzaSize = '';
+        }
+        
+        
+        textElements.forEach(element => {
+          element.value = "";
+        });
+        check1.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        outputTxt.innerText = "";
+
+        output.value = 0;
+
+
+      }
+
+    </script>
+  </body>
+
+</html>
